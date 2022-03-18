@@ -70,7 +70,7 @@ app.all('/', async (req: Request, res: Response) => {
 	}
     }
 
-    const weatherApi = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${cords.lat}&lon=${cords.lon}&units=imperial&appid=1a484c62c6c1d0a3cf1bdda4903204da`)
+    const weatherApi = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${cords.lat}&lon=${cords.lon}&units=imperial&appid=${process.env.OPENWEATHERMAP_API_KEY}`)
     const data = await weatherApi.json()
     
     res.render('page/index', {
