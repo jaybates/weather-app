@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.all('/', async (req: Request, res: Response) => {
 
-    const zip:string = req.body.zipSearch
+    let zip:string = req.body.zipSearch
 
     let geo: object = {
         'zip': '',
@@ -43,7 +43,7 @@ app.all('/', async (req: Request, res: Response) => {
         }
 
     } else {
-        let remoteIP: any = req.socket.remoteAddress
+        let remoteIP: any = req.header('x-forwarded-for') || req.connection.remoteAddress; 
     
         if(remoteIP == '127.0.0.1' || remoteIP == '::1') {
              remoteIP = '4.2.2.2'
@@ -52,13 +52,22 @@ app.all('/', async (req: Request, res: Response) => {
          const geoIP = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.IPGEOLOCATION_API_KEY}&ip=${remoteIP}`)
          const ipInfo = await geoIP.json()
 
-        geo = {
-            'zip': ipInfo.zipcode.split('-')[0],
+         zip = ipInfo.zipcode || '' 
+	 geo = {
+            'zip': zip.split('-')[0],
             'city': ipInfo.city
         }
 
+	if(zip) {
+
         const geoCords = await fetch(`http://api.openweathermap.org/geo/1.0/zip?zip=${geo.zip}&appid=${process.env.OPENWEATHERMAP_API_KEY}`)
         const cords = await geoCords.json()
+	} else {
+	    const cords = {
+		    'lat': ipInfo.latitude,
+		    'lon': ipInfo.longitude
+	    }
+	}
     }
 
     const weatherApi = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${cords.lat}&lon=${cords.lon}&units=imperial&appid=1a484c62c6c1d0a3cf1bdda4903204da`)
