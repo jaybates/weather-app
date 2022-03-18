@@ -1,0 +1,161 @@
+body {
+  margin: 0;
+}
+
+h1, h2 {
+  color: #030c2d;
+  font-size: 1.17em;
+}
+
+#page {
+  min-height: 100vh;
+  display: grid;
+  grid-template: "head" "nav" "main" "foot";
+}
+
+header {
+  background-color: #1b2d48;
+  color: #ffffff;
+  min-height: 90px;
+  grid-area: head;
+}
+
+#logo {
+  font-weight: bold;
+  font-size: 30px;
+  margin: 25px 0 0 100px;
+  float: left;
+}
+
+#logo a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+main {
+  min-height: 100vh;
+  background-color: #ffffff;
+  grid-area: main;
+}
+
+footer {
+  background-color: #4b545d;
+  color: #ffffff;
+  min-height: 100px;
+  margin-top: 10px;
+  grid-area: foot;
+}
+
+.container {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.current-left {
+  height: 160px;
+  grid-row: 1/7;
+  background-color: #a7b5d1;
+  border: 1px solid #b7b7b7;
+  border-radius: 10px 0px 0px 10px;
+  margin: 5px 0;
+  padding: 15px;
+  text-align: center;
+}
+
+.current-right {
+  height: 160px;
+  width: 260px;
+  grid-row: 1/7;
+  border: 1px solid #b7b7b7;
+  border-radius: 0px 10px 10px 0px;
+  margin-left: -1px;
+  padding: 15px;
+  text-align: center;
+  display: grid;
+}
+
+.item {
+  height: 190px;
+  background-color: #a7b5d1;
+  border: 1px solid #b7b7b7;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 15px;
+  text-align: center;
+  display: grid;
+}
+
+.w-container {
+  width: 70%;
+  display: grid;
+  margin: auto;
+  grid-gap: 25px;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+}
+
+.w-item {
+  height: 190px;
+  display: grid;
+  background-color: #a7b5d1;
+  border: 1px solid #b7b7b7;
+  border-radius: 10px;
+  padding: 5px;
+  text-align: center;
+}
+
+.w-info {
+  width: 100%;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 10%;
+}
+
+.w-type {
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.w-day {
+  width: 100%;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.w-date {
+  width: 100%;
+  font-size: 10px;
+}
+
+.current-right .w-type {
+  display: grid;
+  margin: auto;
+}
+
+#zip-search {
+  width: 50%;
+  height: 45px;
+  padding: 0 25px;
+  border: 1px solid #d1d1d1;
+  border-radius: 5px 0 0 5px;
+}
+
+#zip-button {
+  width: 120px;
+  height: 49px;
+  background-color: #3e4d6c;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  margin-left: -5px;
+}
+
+@media (min-width: 750px) {
+  #page {
+    grid-template-areas: "head head head" "main main main" "foot foot foot";
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

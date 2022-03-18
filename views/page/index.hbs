@@ -1,0 +1,69 @@
+{{{sevenday data.daily}}}
+
+<section class="container">
+  <h1>Local Weather Report</h1>
+</section>
+
+<section class="container">
+  <form method="Post" action="/">
+    <input id="zip-search" name="zipSearch" placeholder="Enter Location's ZIP Code"/>
+    <input id="zip-button" type="submit" value="Get Weather" />
+  </form>
+</section>
+
+<section class="container">
+  <h2>Current Forecast {{geo.city}} -  {{geo.zip}}</h2>
+</section>
+
+<section class="container">
+
+  {{#data.current}}
+
+  <div class="current-left">
+
+    {{#weather}}
+    <div class="w-icon">
+      <img src="http://openweathermap.org/img/wn/{{icon}}@2x.png" alt="Weather {{main}}"/>
+    </div>
+    <span class="w-type">{{description}}</span>
+    {{/weather}}
+    <br/>
+    <span class="w-day">{{dow dt}}</span>
+    <br/>
+    <span class="w-date">{{fomattedDate dt}}</span>
+  </div>
+
+  <div class="current-right">
+
+    <span class="w-info">Temperature : {{temp}}</span>
+    <span class="w-info">Precipitation : {{temp}}%</span>
+    <span class="w-info">Humidity : {{humidity}}%</span>
+  </div>
+
+  {{/data.current}}
+</section>
+
+<section class="container">
+    <h2>7 Day Forecast {{geo.city}} -  {{geo.zip}} </h2>
+</section>
+
+<section class="w-container">
+  {{{sevenday data.daily}}}
+  
+  {{#sevenDayForecast}}
+  <div class="w-item">
+    
+    {{#weather}}
+    <div class="w-icon">
+      <img src="http://openweathermap.org/img/wn/{{icon}}@2x.png" alt="Weather {{main}}"/>
+    </div>
+    <span class="w-type">{{description}}</span>
+    {{/weather}}
+    <br/>
+    <span class="w-day">{{dow dt}}</span>
+    <br/>
+    <span class="w-date">{{fomattedDate dt}}</span>
+  </div>
+
+  {{/sevenDayForecast}}
+</section>
